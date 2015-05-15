@@ -23,7 +23,7 @@ parse_quiz_text <- function(quiz_text){
 	lapply(function(q){
 		lecture <- sub("^Lecture *(\\d+[ab]).*", "\\1", q[1], ignore.case=T, perl=T)
 		question <- q[2]
-		answers <- strsplit(q[3],paste0("\n",'[*]'))[[1]] %>% sub("^[*] *", "", .)
+		answers <- strsplit(q[3],paste0(NL,'[*]'))[[1]] %>% sub("^[*] *", "", .)
 		list(lecture=lecture, question=question, answers=answers)
 	})
 }
@@ -46,3 +46,15 @@ github_raw_url <- function(blob_url){
     			strsplit("/blob/") %>% do.call(rbind, .)
     paste("https://raw.githubusercontent.com", url_parts[,1], url_parts[,2], sep="/")
 }
+
+# quizFile <- "../../hs616/questions.md"
+# qlist_local <- quizFile %>% 
+# 				readLines() %>% 
+# 				paste(collapse="\n") %>% 
+# 				parse_quiz_text()
+# 
+# 
+# quizUrl <- "https://raw.githubusercontent.com/rmhorton/hs616/master/questions.md"
+# qlist_github <- quizUrl %>% getURL() %>% parse_quiz_text()
+
+# parse_quiz_text(getURL(quizUrl))
