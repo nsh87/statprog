@@ -3,3 +3,6 @@
 Thumbs.db
 *.html
 .Rhistory
+*_cache/
+*_files/
+.Rproj.user
